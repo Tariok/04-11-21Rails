@@ -8,12 +8,15 @@ class GossipController < ApplicationController
    def show
      # Méthode qui récupère le potin concerné et l'envoie à la view show (show.html.erb) pour affichage
 
-     @gossip = Gossip.joins(:likes).group('gossips.id').select('gossips.*, COUNT(*) as likes_count').find_by(id: params[:id])
-
+     @gossip = Gossip.left_outer_joins(:likes).group('gossips.id').select('gossips.*, COUNT(likes.id) as likes_count').find(params[:id])
+      # left_outer_joins : récupère tous les gossips ET les likes (s'il y en a)
+      # group : on regroupe les gossips et les likes en un élément dans la db dès lors qu'ils ont un "gossips.id" identique
+      # select : tous les attributs des gossips + compte leur nb de likes via l'attribut "id" des likes puis stocke ce cont dans likes_count 
      @gossip_title = @gossip.title 
      @gossip_content = @gossip.content
      @gossip_author = @gossip.find_author.first_name
      @gossip_author_id = @gossip.user_id
+     @has_my_like = Like.find_by(gossip_id: @gossip.id, user_id: current_user)
      @gossip_likes_counter = @gossip.likes_count
     #  likes_count vient de la requete sql ligne 10
    end

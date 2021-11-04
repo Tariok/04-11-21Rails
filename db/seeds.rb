@@ -11,11 +11,48 @@ City.destroy_all
 User.destroy_all
 Gossip.destroy_all
 
-10.times do 
-    City.create(
-        name:Faker::Address.city,
-        zip_code:Faker::Address.zip_code)
-end
+
+
+
+# CITIES
+City.create(
+    name: "Paris",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name:"Lyon",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name:"Toulouse",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name:"Rennes",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name: "Marseille",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name: "Lille",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name:"Perpignan",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name:"Bordeaux",
+    zip_code:Faker::Address.zip_code)
+
+City.create(
+    name:"Strasbourg",
+    zip_code:Faker::Address.zip_code)
+
+
+
 
 10.times do
     User.create(
