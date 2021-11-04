@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.integer :age
       t.text :description
+      t.string :password
 
       t.belongs_to :city, index: true
 

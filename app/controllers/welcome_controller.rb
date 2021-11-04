@@ -1,6 +1,19 @@
 class WelcomeController < ApplicationController
-  def bonjour_name
-    @user_name = params[:id]  
-    puts params[:id] 
+ 
+  def index
+    @user_name = User.find(session[:user_id])
+    
+
+    puts "_______________________________________________"
+
+    puts session[:user_id]
+    puts "Utilisateur"
+    puts @user_name
+
+    puts "_______________________________________________"
+
+
   end
+
+
 end

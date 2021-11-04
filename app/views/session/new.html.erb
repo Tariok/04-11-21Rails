@@ -1,0 +1,36 @@
+
+<h1 class="text-center">Veuillez vous authentifier</h1>
+<h3 class="text-center">Vous avez déjà un compte, connectez-vous :</h3>
+
+
+<%= form_with url:session_create_path, method: :post, local: true do |f| %>
+  <div class="modal-dialog position-absolute top-50 start-50 translate-middle" role="document" >
+    <div class="modal-content rounded-2 shadow p-3 mb-2 bg-transparent  text-center"  style='height : 50%;'>
+      <div class="modal-header p-5 pb-4 justify-content-center border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <h2 class="fw-bold mb-0 text-center">Connexion</h2>
+          </div>
+        <div class="modal-body p-5 pt-0">
+        <form action= <%= user_index_path %> method="POST"  class="form">
+          
+          <div class="form-group mb-4">
+            <p class="font-weight-bold">Email</p>
+            <input name="email" type="email" class="form-control rounded-4"  <% f.text_field :email, type: 'email' %> >
+           
+          </div>
+           <div class="form-group mb-4">
+            <p class="font-weight-bold">Password</p>
+            <input name="password" type="password" class="form-control rounded-4" <% f.text_field :password , class:'form-control', type: 'password' %>>
+            
+            </div>
+          <div class="form-group">
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"  type="submit">Connecte-toi</button>
+         </div>
+        </form>
+      </div>
+    </div>
+   
+  </div>
+<% end %>
+
+

@@ -10,52 +10,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet"> 
  
  </head>
-   <style>
-      body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 20s ease infinite;
-    }
-      h1{
-       font-family: Roboto;
-      }
-      
-     @keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-    }
-    </style>
+   
  <body>
-   
-   
-   
-   
-   
-   <a href="<%= new_gossip_path %>" class="btn btn-primary m-2">Crée un gossip</a>
-    <h1 class="text-center">The Gossip Project</h1>
+    <%if current_user %>
+      <h2> Bienvenue <%= current_user.first_name %> ! </h2>
+    <%else %>
+      <h2> Bienvenue à toi, cher anonyme ! </h2>
+    <% end%>
+
+   <% puts current_user().inspect %>
+   <% puts session[:user_id].inspect %>
+
+   <% puts "BLABLABLA" %>
+  <h1 class="text-center">The Gossip Project</h1>
     
-  <div class = "d-inline-flex flex-wrap justify-content-around align-self-stretch">
-  <%@all_gossips_array.each do |gossip| %>
-   <div class="card m-3 " style="width: 18rem;">
-    <div class="card-body ">
-      <h5 class="card-title"> <%= gossip.title %></h5>
-      <% author_name = gossip.find_author.first_name %>
-      <h6> de: <%= author_name %> </h6>
-      <h6> A: <%= gossip.user.city.name%> </h6>
-      <p class="card-text"> <%= gossip.content %></p> 
-      <a href="/gossip/<%= gossip.id %>">Voir les détails de ce potin</a>
-    </div>
-  </div>
-<% end %>
-</div>
-
-
-</body>
+      <div class = "d-inline-flex flex-wrap justify-content-around align-self-stretch">
+        <%@all_gossips_array.each do |gossip| %>
+          <div class="card m-3 " style="width: 18rem;">
+            <div class="card-body ">
+              <h5 class="card-title"> <%= gossip.title %></h5>
+              <% author_name = gossip.find_author.first_name %>
+              <h6> de: <%= author_name %> </h6>
+              <h6> A: <%= gossip.user.city.name%> </h6>
+              <p class="card-text"> <%= gossip.content %></p> 
+              <a href="/gossip/<%= gossip.id %>">Voir les détails de ce potin</a>
+           </div>
+          </div>
+        <% end %>
+      </div>
+  </body>
 </html>

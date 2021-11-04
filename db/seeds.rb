@@ -7,7 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-
+City.destroy_all
+User.destroy_all
+Gossip.destroy_all
 
 10.times do 
     City.create(
@@ -22,14 +24,16 @@ end
         description:Faker::Lorem.paragraph,
         email:Faker::Internet.email, 
         age:Faker::Number.between(from: 20, to: 65),
-        city: City.all.sample) 
+        city: City.all.sample,
+        password:"Blabla01!")
 end
 
 20.times do 
     Gossip.create(
         user: User.all.sample,
         title:Faker::Book.title, 
-        content:Faker::Lorem.paragraph)
+        content:Faker::Lorem.paragraph,
+        likes_counter: 0)
 end
 
 10.times do 

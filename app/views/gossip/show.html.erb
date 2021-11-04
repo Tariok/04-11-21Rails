@@ -4,20 +4,68 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    
+    
     </head>
+  <style>
+    textarea {
+    padding: 10px;
+    max-width: 50%;
+    line-height: 1.5;
+    border-radius: 10px;
+    border: 1px solid red;
+    box-shadow: 1px 1px 1px #999;
 
-  <body>
+    }
+  </style>
   
+  
+  <body> 
+ 
   <h1>Tu veux en voir plus ? </h1>
 
 
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
+    <div class="card " style="width: 18rem;">
+      <div class="card-body ">
       <h5 class="card-title"><%=@gossip_title%></h5>
       <h6 class="card-subtitle mb-2 text-muted">Ecrit par : <%=@gossip_author%></h6>
       <h6 class="card-subtitle mb-2 text-muted">A : <%=@gossip.user.city.name%></h6>
 
+
       <p class="card-text"><%=@gossip_content%></p>
+      <h6>Nombre de j'aime: <%=@gossip_likes_counter%></h6> 
+
+
+
+      <%if Like.find_by(gossip_id: @gossip.id).user_id == current_user.id %>
+        <form action="<%= like_path(@gossip.id) %>" method="POST">
+            <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <button type="submit">je n'aime plus</button>
+        </form>
+
+      <%else%>
+
+       <form action="<%= like_create_path() %>" method="POST">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="gossip_id" value="<%= @gossip.id %>">          
+        <button type="submit">j'aime</button>
+        </form>
+
+        
+      <%end%>
+        
+
+      <%=puts "__________________________________________"%>
+
+
+      <%=puts Like.find_by(gossip_id: params[:id]).inspect%>
+
+
+      <%=puts "ON EN A MARRRREUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUH"%>
+      
+     
+       
       <a href="/profile/<%=@gossip_author_id%>"> Voir le profil de l'auteur </a>
       <a href="<%= edit_gossip_path(@gossip.id)%>" class= "btn btn-primary"> Editer le potin </a>
       
@@ -31,15 +79,15 @@
 
     </div>
     </div>
-
+      
 
 <h4>Ecrire un commentaire : </h4>
 
 <form action="<%= comment_index_path() %>" method="POST">
 <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 <input type="hidden" name="gossip_id" value="<%= @gossip.id %>">
-<textarea name="comment_content" id="" cols="30" rows="10"></textarea>
-<button type="submit">Poste ton commentaire</button>
+<textarea  name="comment_content" id="" cols="30" rows="10"></textarea>
+ <button class= "btn btn-primary" type="submit">Poste ton commentaire</button>
 </form>
 
 
@@ -66,14 +114,13 @@
             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
             <button type="submit">Supprimer</button>
       </form>
-
+<% end %>
 
 
   <br />
   <p>_________________________________ </p>
 
-<% end %>
 
-    
+
   </body>
 </html>

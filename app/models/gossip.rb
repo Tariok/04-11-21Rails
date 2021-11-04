@@ -4,6 +4,7 @@ class Gossip < ApplicationRecord
   has_many :comments
   has_many :join_table_gossip_tags
   has_many :tags, through: :join_table_gossip_tags
+  has_many :likes
 
   validates :title,
   presence: true,
@@ -22,6 +23,10 @@ class Gossip < ApplicationRecord
   def find_all_comments(gossip_id)
     gossip_comments = Comment.joins(:gossip).where(gossips: { id: gossip_id })
   
+  end
+
+  def show
+    
   end
 
 

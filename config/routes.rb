@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  resources :like
+  post 'like/create'
+  post 'like/destroy'
+  resources :user
+  get 'session/new'
+  post 'session/create'
+  get 'session/destroy'
   get 'comment/new'
+  resources :session, only:[:new, :create, :destroy]
   resources :gossip
   resources :profile
   resources :welcome

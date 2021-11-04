@@ -1,22 +1,26 @@
-<h1>Editer l'article</h1>
+
 
 <%= form_for @gossip do |f| %>
-
-  <div class="form-group">
-    <label>Titre de l'article : </label>
-    <%= f.text_field :title %>
-    <%# :title = nom duchamps %>
-  </div><br>
-
-  <div class="form-group">
-    <label>Contenu de l'article: </label>
-    <%= f.text_area :content , class:'form-control' %>
-  </div><br>
-
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary ">Modifier l'article </button>
+  <div class="modal-dialog position-absolute top-50 start-50 translate-middle" role="document" >
+    <div class="modal-content rounded-2 shadow p-3 mb-2 bg-transparent  text-center"  style='height : 50%;'>
+      <div class="modal-header p-5 pb-4 justify-content-center border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <h2 class="fw-bold mb-0 text-center">Editer un Gossip</h2>
+          </div>
+        <div class="modal-body p-5 pt-0">
+          <div class="form-group">
+            <label>Titre de l'article : </label>
+            <%= f.text_field :title %>
+          </div><br>
+            <div class="form-group">
+            <label>Contenu de l'article: </label>
+            <%= f.text_area :content , class:'form-control' %>
+         </div><br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary ">Modifier le Gossip </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-
 <% end %>
