@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+
+  <body>
+  
+  <h1>Tu veux en voir plus ? </h1>
+
+
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+      <h5 class="card-title"><%=@gossip_title%></h5>
+      <h6 class="card-subtitle mb-2 text-muted">Ecrit par : <%=@gossip_author%></h6>
+      <h6 class="card-subtitle mb-2 text-muted">A : <%=@gossip.user.city.name%></h6>
+
+      <p class="card-text"><%=@gossip_content%></p>
+      <a href="/profile/<%=@gossip_author_id%>"> Voir le profil de l'auteur </a>
+      <a href="<%= edit_gossip_path(@gossip.id)%>" class= "btn btn-primary"> Editer le potin </a>
+      
+        <%# <a class="btn btn-light" data-confirm="OK?" data-method="DELETE">Supprimer le gossip</a> %>
+
+      <form action="<%= gossip_path(@gossip.id) %>" method="POST">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <button type="submit">Supprimer</button>
+      </form>
+
+    </div>
+    </div>
+
+
+<h4>Ecrire un commentaire : </h4>
+
+<form action="<%= comment_index_path() %>" method="POST">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="hidden" name="gossip_id" value="<%= @gossip.id %>">
+<textarea name="comment_content" id="" cols="30" rows="10"></textarea>
+<button type="submit">Poste ton commentaire</button>
+</form>
+
+
+<h3>Commentaires: </h3>
+<p>_________________________________ </p>
+
+
+<% (@gossip.find_all_comments(params[:id])).each do |comment| %>
+  <h6>De: <%= comment.user.first_name %> </h6>
+  <br />
+        <form action="<%= comment_path(comment.id) %>" method="POST">
+              <textarea name="comment_content">
+                <%= comment.content %>
+              </textarea>
+              <br />
+              <input type="hidden" name="_method" value="patch">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <button type="submit">Editer</button>
+        </form>
+
+
+      <form action="<%= comment_path(comment.id) %>" method="POST">
+            <input type="hidden" name="_method" value="delete">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <button type="submit">Supprimer</button>
+      </form>
+
+
+
+  <br />
+  <p>_________________________________ </p>
+
+<% end %>
+
+    
+  </body>
+</html>

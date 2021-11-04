@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ body {
+  text-align: center;
+  background-color: #FFC6D4;
+}
+
+
+.page {
+	  width: 300px;
+  background: white;
+  border: 20px solid #F1A3B6;
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 8%;
+}
+
+.header {
+  font-family:  Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  color: #F1A3B6;
+  margin: 40px 0 15px 0;
+  display: inline-block;
+}
+
+.feedback-input {
+  	font-family: Helvetica, Arial, sans-serif;
+  color: #F1A3B6;
+	  font-size: 18px;
+	  line-height: 22px;
+	  padding: 10px;
+  border: 1px solid white;
+  border-bottom: 1px dotted #F1A3B6;
+  width: 90%;
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	  -ms-box-sizing: border-box;
+	  box-sizing: border-box;  
+}
+
+.submit-button{
+	  font-family: Helvetica, Arial, sans-serif;
+	  cursor: pointer;
+  background-color: white;
+	  color: #F1A3B6;
+	  font-size:24px;
+  margin: 25px 0 30px 0;
+  padding: 10px 0;
+  width: 130px;
+  border: 2px solid #F1A3B6;
+  border-radius: 25px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+textarea {
+    height: 180px;
+    line-height: 150%;
+}
+
+.submit-button:hover{
+	  background-color: #A3F1AE;
+  border: 2px solid #A3F1AE;
+  color: #4EA45B;
+  font-weight: 700;
+}

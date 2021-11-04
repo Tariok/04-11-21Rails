@@ -1,0 +1,41 @@
+<% require_relative '../../models/gossip.rb' %>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body>
+
+<h1>Tu es sur la page de <%= @city_name %>  </h1>
+
+  <a href="/gossip/new"> >>> Ecrire un nouveau potin <<< </a>
+    
+
+<div class = "d-inline-flex flex-wrap justify-content-around align-self-stretch">
+
+<% 
+@city_all_gossips.each do |gossip| %>
+<div class="card m-3" style="width: 18rem;">
+  <div class="card-body ">
+<h5 class="card-title"> <%= gossip.title %></h5>
+<% author_name = gossip.find_author.first_name %>
+<h6> de: <%= author_name %> </h6>
+
+<% city_author = City.find_by(id: gossip.find_author.city_id).name %>
+
+<h6> A: <%= city_author %> </h6>
+<p class="card-text"> <%= gossip.content %></p> 
+<a href="/gossip/<%= gossip.id %>">Voir les détails de ce potin</a>
+  </div>
+</div>
+<% end %>
+</div>
+
+
+    </body>
+    </html>

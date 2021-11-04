@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+<body>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user_first_name%></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= @user_last_name %></h6>
+    <p class="card-text">Age: <%= @user_age %>
+    <br> Description: <%= @user_description %> 
+    <br> City: <%= @user_city.name%> 
+    <br> Email: <%= @user_email %> </p>
+
+    
+  </div>
+</div>
